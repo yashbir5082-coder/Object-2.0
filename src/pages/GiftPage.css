@@ -1,0 +1,409 @@
+/* ================================================================
+   🎁 GIFT PAGE STYLES
+   ================================================================ */
+
+.gift-page {
+  min-height: 100vh;
+  padding: var(--space-3xl) var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.gift-section {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.section-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* ---- Memory Cards ---- */
+.memories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--space-lg);
+  width: 100%;
+}
+
+.memory-card-container {
+  perspective: 1000px;
+}
+
+.memory-card {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  position: relative;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: var(--radius-lg);
+}
+
+.memory-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.memory-front,
+.memory-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.memory-front {
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.memory-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.memory-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  width: 100%;
+  height: 100%;
+  padding: var(--space-lg);
+  text-align: center;
+  background: linear-gradient(135deg, rgba(255, 107, 157, 0.12), rgba(78, 205, 196, 0.12));
+}
+
+.memory-placeholder-icon {
+  font-size: 3rem;
+}
+
+.memory-placeholder-caption {
+  font-family: var(--font-handwriting);
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.memory-song-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  transition: background var(--transition-fast);
+}
+
+.memory-song-badge:hover {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.song-icon {
+  font-size: 1.1rem;
+}
+
+.song-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.memory-back {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  gap: var(--space-lg);
+  text-align: center;
+}
+
+.memory-caption {
+  font-family: var(--font-handwriting);
+  font-size: 1.3rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+.memory-song-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.song-title {
+  font-size: 0.9rem;
+  color: var(--accent-primary);
+}
+
+.song-artist {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.btn-sm {
+  padding: 6px 16px;
+  font-size: 0.8rem;
+}
+
+.memory-hint {
+  position: absolute;
+  bottom: 12px;
+  opacity: 0.5;
+}
+
+/* No Memories */
+.no-memories {
+  text-align: center;
+  padding: var(--space-3xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.no-memories-icon {
+  font-size: 3rem;
+}
+
+/* ---- Greeting Letter ---- */
+.greeting-letter {
+  width: 100%;
+  max-width: 600px;
+  padding: var(--space-3xl);
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+  transform-origin: top center;
+}
+
+/* Parchment template */
+.letter-parchment {
+  background: linear-gradient(135deg, #f5e6c8, #e8d5a8, #f0dbb5);
+  color: #3a2a1a;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3),
+              inset 0 0 60px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(139, 119, 72, 0.3);
+}
+
+/* Modern gradient template */
+.letter-modern {
+  background: linear-gradient(135deg, rgba(255, 107, 157, 0.15), rgba(192, 132, 252, 0.15));
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+}
+
+/* Floral template */
+.letter-floral {
+  background: linear-gradient(135deg, #fdf2f8, #fce7f3, #f5f3ff);
+  color: #4a3560;
+  border: 2px solid rgba(192, 132, 252, 0.3);
+}
+
+/* Night sky template */
+.letter-nightsky {
+  background: linear-gradient(135deg, #0f172a, #1e1b4b, #0f172a);
+  color: #e2e8f0;
+  border: 1px solid rgba(103, 232, 249, 0.2);
+  box-shadow: 0 0 40px rgba(103, 232, 249, 0.1);
+}
+
+.letter-decorations {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.letter-corner {
+  position: absolute;
+  font-size: 1.5rem;
+  opacity: 0.3;
+}
+
+.letter-corner.tl { top: 12px; left: 12px; }
+.letter-corner.tr { top: 12px; right: 12px; }
+.letter-corner.bl { bottom: 12px; left: 12px; }
+.letter-corner.br { bottom: 12px; right: 12px; }
+
+.letter-content {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  position: relative;
+  z-index: 1;
+}
+
+.letter-content p {
+  margin-bottom: 0.3em;
+}
+
+.letter-spacer {
+  height: 0.8em;
+}
+
+.letter-seal {
+  text-align: right;
+  font-size: 2rem;
+  margin-top: var(--space-lg);
+  position: relative;
+  z-index: 1;
+}
+
+.letter-placeholder {
+  text-align: center;
+  opacity: 0.5;
+  font-style: italic;
+}
+
+/* ---- Feedback ---- */
+.feedback-wrapper {
+  max-width: 500px;
+}
+
+.feedback-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  text-align: center;
+}
+
+.emoji-options {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.emoji-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  background: var(--bg-glass);
+  border: 2px solid transparent;
+  transition: all var(--transition-normal);
+  min-width: 70px;
+}
+
+.emoji-btn:hover {
+  background: var(--bg-glass-strong);
+  transform: translateY(-3px);
+}
+
+.emoji-btn.selected {
+  border-color: var(--accent-primary);
+  background: rgba(255, 107, 157, 0.1);
+  transform: translateY(-3px);
+}
+
+.emoji-icon {
+  font-size: 2rem;
+}
+
+.emoji-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.feedback-text-area {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: 100%;
+  overflow: hidden;
+}
+
+.feedback-thanks {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.feedback-thanks-emoji {
+  font-size: 3rem;
+}
+
+/* ---- Create Your Own ---- */
+.create-cta {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-3xl);
+}
+
+/* ---- Footer ---- */
+.gift-footer {
+  padding: var(--space-2xl) 0;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .memories-grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+  }
+
+  .greeting-letter {
+    padding: var(--space-xl);
+  }
+
+  .letter-content {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gift-page {
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .emoji-options {
+    gap: var(--space-sm);
+  }
+
+  .emoji-btn {
+    padding: var(--space-sm);
+    min-width: 55px;
+  }
+
+  .emoji-icon {
+    font-size: 1.5rem;
+  }
+}
