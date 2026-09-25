@@ -157,8 +157,8 @@ export default function EditorPage() {
       memories: giftData.memories.map((m) => ({
         ...m,
         // Keep photos if they're URL-based, strip large base64
-        photoUrl: m.photoUrl?.startsWith('http') ? m.photoUrl : 
-                  m.photoUrl?.length < 5000 ? m.photoUrl : '',
+        photoUrl: m.photoUrl?.startsWith('http') ? m.photoUrl :
+          m.photoUrl?.length < 5000 ? m.photoUrl : '',
       })),
     };
     const link = generateShareableLink(shareData);
@@ -234,7 +234,7 @@ export default function EditorPage() {
                   <label className="label">Their Name</label>
                   <input
                     className="input-field"
-                    placeholder="e.g. Priya"
+                    placeholder="Who's birthday is it?"
                     value={giftData.recipient.name}
                     onChange={(e) => updateRecipient('name', e.target.value)}
                   />
@@ -252,7 +252,7 @@ export default function EditorPage() {
                   <label className="label">Your Name</label>
                   <input
                     className="input-field"
-                    placeholder="e.g. Yash"
+                    placeholder="Who is are you?"
                     value={giftData.sender.name}
                     onChange={(e) => updateSender('name', e.target.value)}
                   />
@@ -413,9 +413,8 @@ export default function EditorPage() {
                     {LETTER_TEMPLATES.map((t) => (
                       <button
                         key={t.id}
-                        className={`template-option ${
-                          giftData.greeting.letterTemplateId === t.id ? 'selected' : ''
-                        }`}
+                        className={`template-option ${giftData.greeting.letterTemplateId === t.id ? 'selected' : ''
+                          }`}
                         onClick={() =>
                           updateGiftData((prev) => ({
                             ...prev,
@@ -437,9 +436,8 @@ export default function EditorPage() {
                     {GREETING_STYLES.map((gs) => (
                       <button
                         key={gs.id}
-                        className={`btn btn-sm ${
-                          giftData.greeting.templateId === gs.id ? 'btn-primary' : 'btn-secondary'
-                        }`}
+                        className={`btn btn-sm ${giftData.greeting.templateId === gs.id ? 'btn-primary' : 'btn-secondary'
+                          }`}
                         onClick={() => handleGenerateGreeting(gs.id)}
                       >
                         {gs.name}
