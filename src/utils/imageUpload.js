@@ -5,7 +5,7 @@
  * @param {number} quality - JPEG quality 0–1 (default 0.7)
  * @returns {Promise<string>} Base64 data URL of compressed image
  */
-export function compressImage(file, maxWidth = 600, quality = 0.7) {
+export function compressImage(file, maxWidth = 360, maxHeight = 450, quality = 0.6) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -16,8 +16,12 @@ export function compressImage(file, maxWidth = 600, quality = 0.7) {
         let height = img.height;
 
         if (width > maxWidth) {
-          height = (height * maxWidth) / width;
+          height = Math.round((height * maxWidth) / width);
           width = maxWidth;
+        }
+        if (height > maxHeight) {
+          width = Math.round((width * maxHeight) / height);
+          height = maxHeight;
         }
 
         canvas.width = width;

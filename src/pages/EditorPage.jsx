@@ -101,7 +101,7 @@ export default function EditorPage() {
   const handlePhotoUpload = async (idx, file) => {
     if (!file) return;
     try {
-      const compressed = await compressImage(file, 600, 0.7);
+      const compressed = await compressImage(file, 360, 450, 0.6);
       updateMemory(idx, 'photoUrl', compressed);
     } catch (err) {
       console.error('Photo upload failed:', err);
@@ -151,17 +151,7 @@ export default function EditorPage() {
 
   // ----- Share -----
   const handleGenerate = () => {
-    // Strip base64 photos for URL (keep only small data)
-    const shareData = {
-      ...giftData,
-      memories: giftData.memories.map((m) => ({
-        ...m,
-        // Keep photos if they're URL-based, strip large base64
-        photoUrl: m.photoUrl?.startsWith('http') ? m.photoUrl :
-          m.photoUrl?.length < 5000 ? m.photoUrl : '',
-      })),
-    };
-    const link = generateShareableLink(shareData);
+    const link = generateShareableLink(giftData);
     setGeneratedLink(link || '');
   };
 
@@ -285,18 +275,26 @@ export default function EditorPage() {
                         {mem.photoUrl ? (
                           <div className="photo-preview">
                             <img src={mem.photoUrl} alt="Memory" />
-                            <button
-                              className="btn-change-photo"
-                              onClick={() => {
-                                const input = document.createElement('input');
-                                input.type = 'file';
-                                input.accept = 'image/*';
-                                input.onchange = (e) => handlePhotoUpload(idx, e.target.files[0]);
-                                input.click();
-                              }}
-                            >
-                              Change
-                            </button>
+                            <div className="photo-preview-actions">
+                              <button
+                                className="btn-change-photo"
+                                onClick={() => {
+                                  const input = document.createElement('input');
+                                  input.type = 'file';
+                                  input.accept = 'image/*';
+                                  input.onchange = (e) => handlePhotoUpload(idx, e.target.files[0]);
+                                  input.click();
+                                }}
+                              >
+                                Change
+                              </button>
+                              <button
+                                className="btn-remove-photo"
+                                onClick={() => updateMemory(idx, 'photoUrl', '')}
+                              >
+                                ✕ Remove
+                              </button>
+                            </div>
                           </div>
                         ) : (
                           <button
